@@ -5,7 +5,7 @@ Subject: [PATCH] Implement Mob Goal API
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 0d757b4a1b5d1bb68a48ec0a398019bf1f64c6a4..cab6f19bb69da3b51bf05fac7075675b2a55564b 100644
+index 158779a3590f089c4224b2b128c2e653aef42a94..4f8b8839f4d345f448d30de21ad9f3ad7422f98b 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -40,6 +40,7 @@ dependencies {
@@ -18,7 +18,7 @@ index 0d757b4a1b5d1bb68a48ec0a398019bf1f64c6a4..cab6f19bb69da3b51bf05fac7075675b
      testImplementation("org.mockito:mockito-core:5.11.0")
 diff --git a/src/main/java/com/destroystokyo/paper/entity/ai/MobGoalHelper.java b/src/main/java/com/destroystokyo/paper/entity/ai/MobGoalHelper.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..ff2790b57cfd1977020c11912d229930bb7b6cc2
+index 0000000000000000000000000000000000000000..07a20ffc5a87993aeac3fbb5965f11a013be77a1
 --- /dev/null
 +++ b/src/main/java/com/destroystokyo/paper/entity/ai/MobGoalHelper.java
 @@ -0,0 +1,240 @@
@@ -233,7 +233,7 @@ index 0000000000000000000000000000000000000000..ff2790b57cfd1977020c11912d229930
 +    }
 +
 +    public static <T extends Mob> GoalKey<T> getKey(Class<? extends Goal> goalClass) {
-+        String name = getPathName(ObfHelper.INSTANCE.deobfClassName(goalClass.getName()));
++        String name = getPathName(io.papermc.paper.util.MappingEnvironment.reobf() ? ObfHelper.INSTANCE.deobfClassName(goalClass.getName()) : goalClass.getName());
 +        return GoalKey.of(getEntity(goalClass), NamespacedKey.minecraft(name));
 +    }
 +
@@ -635,7 +635,7 @@ index 6667ecc4b7eded4e20a415cef1e1b1179e6710b8..16f9a98b8a939e5ca7e2dc04f87134a7
          LOOK,
          JUMP,
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index c7d95adbd675af54dcd32773ab88c79e829df745..8fa6496605c3f2ac7f16abd0e32190a189d6549a 100644
+index 5de7a7ec3d4aa6b5a2b50175c1eed95ba0c370b7..0d96bb371e555cb384d03f0c49f4082150d30974 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 @@ -2908,5 +2908,11 @@ public final class CraftServer implements Server {

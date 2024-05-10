@@ -294,7 +294,7 @@ public final class CraftBlockStates {
     }
 
     // See BlockStateFactory#createBlockState(World, BlockPosition, IBlockData, TileEntity)
-    public static CraftBlockState getBlockState(World world, BlockPos blockPosition, net.minecraft.world.level.block.state.BlockState blockData, BlockEntity tileEntity) {
+    private static CraftBlockState getBlockState(World world, BlockPos blockPosition, net.minecraft.world.level.block.state.BlockState blockData, BlockEntity tileEntity) {
         Material material = CraftBlockType.minecraftToBukkit(blockData.getBlock());
         BlockStateFactory<?> factory;
         // For some types of TileEntity blocks (eg. moving pistons), Minecraft may in some situations (eg. when using Block#setType or the
