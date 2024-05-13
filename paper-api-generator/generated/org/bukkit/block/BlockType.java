@@ -111,6 +111,7 @@ import org.bukkit.block.data.type.TrialSpawner;
 import org.bukkit.block.data.type.Tripwire;
 import org.bukkit.block.data.type.TripwireHook;
 import org.bukkit.block.data.type.TurtleEgg;
+import org.bukkit.block.data.type.Vault;
 import org.bukkit.block.data.type.Wall;
 import org.bukkit.block.data.type.WallHangingSign;
 import org.bukkit.block.data.type.WallSign;

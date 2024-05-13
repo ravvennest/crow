@@ -114,7 +114,7 @@ index 54fab6f0bd7c33ef63b7d08ac813e92ca952f562..01bbfc4353ed042aac1a2090a6b80415
       * BlockData: {@link Directional}
       */
 diff --git a/src/main/java/org/bukkit/block/BlockType.java b/src/main/java/org/bukkit/block/BlockType.java
-index d8ecdc9e104955ee79144cbdcd12ceb88154b894..e1c5dc78a0354ca2065d15a6ebbc6c0e2cb4e3d6 100644
+index d8ecdc9e104955ee79144cbdcd12ceb88154b894..aedbcf6695b28d9665cc9ba6b56a4908dca55e8f 100644
 --- a/src/main/java/org/bukkit/block/BlockType.java
 +++ b/src/main/java/org/bukkit/block/BlockType.java
 @@ -96,6 +96,8 @@ import org.bukkit.block.data.type.SculkShrieker;
@@ -126,7 +126,15 @@ index d8ecdc9e104955ee79144cbdcd12ceb88154b894..e1c5dc78a0354ca2065d15a6ebbc6c0e
  import org.bukkit.block.data.type.Slab;
  import org.bukkit.block.data.type.SmallDripleaf;
  import org.bukkit.block.data.type.Snow;
-@@ -1252,59 +1254,59 @@ public interface BlockType extends Keyed, Translatable {
+@@ -109,6 +111,7 @@ import org.bukkit.block.data.type.TrialSpawner;
+ import org.bukkit.block.data.type.Tripwire;
+ import org.bukkit.block.data.type.TripwireHook;
+ import org.bukkit.block.data.type.TurtleEgg;
++import org.bukkit.block.data.type.Vault;
+ import org.bukkit.block.data.type.Wall;
+ import org.bukkit.block.data.type.WallHangingSign;
+ import org.bukkit.block.data.type.WallSign;
+@@ -1252,59 +1255,59 @@ public interface BlockType extends Keyed, Translatable {
      /**
       * BlockData: {@link Rotatable}
       */
