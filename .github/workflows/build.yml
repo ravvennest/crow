@@ -41,12 +41,15 @@ jobs:
         id: determine
         env:
           REF_NAME: "${{ github.ref_name }}"
+          REF_TYPE: "${{ github.ref_type }}"
+          EVENT: "${{ toJSON(github.event) }}"
+          EVENT_TYPE: "${{ github.event_name }}"
         with:
           script: |
             const {owner, repo} = context.repo;
-            const event_name = "${{ github.event_name }}";
-            const event = ${{ toJSON(github.event) }};
-            const ref_type = "${{ github.ref_type }}";
+            const event_name = `${process.env.EVENT_TYPE}`;
+            const event = `${process.env.EVENT}`;
+            const ref_type = `${process.env.REF_TYPE}`;
             const ref_name = `${process.env.REF_NAME}`;
             const result = {
               action: "build"
