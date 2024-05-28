@@ -18,6 +18,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v7
+        env:
+          BRANCH_NAME: "${{ github.event.workflow_run.head_branch }}"
+          PR_OWNER: "${{ github.event.workflow_run.head_repository.owner.login }}"
         with:
           # This snippet is public-domain, taken from
           # https://github.com/oprypin/nightly.link/blob/master/.github/workflows/pr-comment.yml
@@ -45,9 +48,9 @@ jobs:
             if (event_type === "push") { // if push, it's from the same repo which means `pull_requests` is populated
               pulls = ${{ toJSON(github.event.workflow_run.pull_requests) }};
             } else {
-              const pr_branch = "${{ github.event.workflow_run.head_branch }}";
+              const pr_branch = `${process.env.BRANCH_NAME}`;
               const pr_sha = "${{ github.event.workflow_run.head_sha }}";
-              const pr_owner = "${{ github.event.workflow_run.head_repository.owner.login }}";
+              const pr_owner = `${process.env.PR_OWNER}`;
               const { data } = await github.rest.pulls.list({ owner, repo, head: `${pr_owner}:${pr_branch}`, state: "open" });
               core.debug(JSON.stringify(data, null, 2));
               pulls = data.filter((pr) => pr.head.sha === pr_sha && pr.labels.find((l) => l.name === "build-pr-jar"));
