@@ -51,7 +51,7 @@ jobs:
             let pulls = [];
             const event_type = `${process.env.EVENT_TYPE}`;
             if (event_type === "push") { // if push, it's from the same repo which means `pull_requests` is populated
-              pulls = `${process.env.PULL_REQUESTS}`;
+              pulls = JSON.parse(`${process.env.PULL_REQUESTS}`);
             } else {
               const pr_branch = `${process.env.BRANCH_NAME}`;
               const pr_sha = `${process.env.PR_SHA}`;

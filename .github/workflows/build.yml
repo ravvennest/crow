@@ -48,7 +48,7 @@ jobs:
           script: |
             const {owner, repo} = context.repo;
             const event_name = `${process.env.EVENT_TYPE}`;
-            const event = `${process.env.EVENT}`;
+            const event = JSON.parse(`${process.env.EVENT}`);
             const ref_type = `${process.env.REF_TYPE}`;
             const ref_name = `${process.env.REF_NAME}`;
             const result = {
